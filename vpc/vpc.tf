@@ -5,12 +5,12 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.0.0"
 
-  name = "mgmt-vpc"
+  name = "bst-staging-vpc-02"
   cidr = "172.0.0.0/16"
   
   azs             = var.vpc_azs
-  private_subnets = ["172.0.1.0/24", "172.0.2.0/24", "172.0.3.0/24"]
-  public_subnets  = ["172.0.10.0/24", "172.0.20.0/24", "172.0.30.0/24"]
+  private_subnets = ["172.17.0.0/19", "172.17.32.0/19", "172.17.64.0/19"]
+  public_subnets  = ["172.37.0.0/19", "172.37.32.0/19", "172.37.64.0/19"]
 
   enable_ipv6 = false
 
@@ -18,16 +18,16 @@ module "vpc" {
   single_nat_gateway = true
 
   public_subnet_tags = {
-    Name = "overridden-name-public"
+    Name = "bst-staging-pub-vpc-02"
   }
 
   tags = {
-    Owner       = "user"
-    Environment = "dev"
+    Owner       = "Terraform"
+    Environment = "staging"
   }
 
   vpc_tags = {
-    Name = "mgmt-vpc"
+    Name = "bst-staging-vpc-02"
   
 }
 }
