@@ -33,7 +33,7 @@ module "vpc" {
 }
 
 resource "aws_instance" "myserver" {
-  vpc_id        =  module.vpc.vpc_id
-	ami           = "ami-09624659bc7805447"
+  ami           = "ami-09624659bc7805447"
   instance_type = "t2.micro"
+  subnet_id =  module.vpc.private_subnets[0]
 }
